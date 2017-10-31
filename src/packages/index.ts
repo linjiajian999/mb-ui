@@ -1,12 +1,12 @@
 import './index.scss'
 import './public.scss'
 
-import rippleObj from './ripple/index'
-import dialogsObj from './dialogs/index'
+import Ripple from './ripple/index'
+import Dialogs from './dialogs/index'
 
 const list = [
-  rippleObj,
-  dialogsObj
+  Ripple,
+  Dialogs
 ]
 
 import Vue, { PluginFunction } from 'vue'
@@ -21,7 +21,7 @@ export {
   install
 }
 export default {
-  Ripple: rippleObj.Ripple,
-  Dialogs: dialogsObj.Dialogs,
+  Ripple,
+  Dialogs,
   install
 }
