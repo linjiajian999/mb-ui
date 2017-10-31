@@ -18,5 +18,5 @@ import { Ripple, Dialogs } from 'mb-ui'
 import 'mb-ui/ripple/index.css'
 import 'mb-ui/dialogs/index.css'
 Vue.use(Ripple.install)
-Vue.use(Ripple.install)
+Vue.use(Dialogs.install)
 ```
