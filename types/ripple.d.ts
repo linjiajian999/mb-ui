@@ -1,6 +1,6 @@
 import Vue, { PluginFunction } from 'vue'
 
 export default interface ripplePlugin {
-  ripple: Vue
+  Ripple: Vue
   install: PluginFunction<any>
 }

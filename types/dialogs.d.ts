@@ -28,7 +28,7 @@ export declare interface MbDialogsObj {
   setDefault(options: ShowOptions): void
 }
 export declare interface dialogsPlugin {
-  mbDialogs: MbDialogsClass
+  Dialogs: MbDialogsClass
   install: PluginFunction<any>
 }
 declare module 'vue/types/vue' {

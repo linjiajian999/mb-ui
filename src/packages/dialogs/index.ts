@@ -1,12 +1,12 @@
-import mbDialogs from './dialogs.vue'
+import Dialogs from './dialogs.vue'
 import install from './dialogsInstall'
 
 export {
   install,
-  mbDialogs
+  Dialogs
 }
 
 export default {
-  mbDialogs,
+  Dialogs,
   install
 }
