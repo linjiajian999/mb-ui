@@ -1,0 +1,18 @@
+.mb{
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -moz-tap-highlight-color: rgba(255, 255, 255, 0);
+  -ms-tap-highlight-color: rgba(255, 255, 255, 0);
+  -o-tap-highlight-color: rgba(255, 255, 255, 0);
+  tap-highlight-color: rgba(255, 255, 255, 0);
+
+  &-center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+}
