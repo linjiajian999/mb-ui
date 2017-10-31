@@ -1,6 +1,6 @@
 {
-  "name": "mb-ui",
-  "version": "1.0.0",
+  "name": "vue-mb-ui",
+  "version": "1.0.2",
   "description": "a vue ui-framework with typescript",
   "author": "linjiajian999",
   "file": [
@@ -8,8 +8,26 @@
     "src",
     "types"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/linjiajian999/mb-ui.git"
+  },
   "main": "lib/index.js",
   "types": "types",
+  "keywords": [
+    "vue",
+    "mb-ui",
+    "mb ui",
+    "vue ui",
+    "vue mb ui",
+    "vue-mb-ui",
+    "vuejs",
+    "material design",
+    "material ripple",
+    "vue typescript",
+    "typescript",
+    "components"
+  ],
   "scripts": {
     "dev": "node build/dev-server.js",
     "start": "npm run dev",
