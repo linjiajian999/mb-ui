@@ -6,12 +6,9 @@ import router from './router/index.js'
 
 Vue.config.productionTip = false
 
-import mbRipple from 'vue-ripple-effect'
-console.log(mbRipple)
-import dialogs  from './packages/dialogs/index'
-import ripple from './packages/ripple/index'
-Vue.use(dialogs.install)
-Vue.use(ripple.install)
+import mb from './packages'
+Vue.use(mb.install)
+
 /* eslint-disable no-new */
 declare interface myWindow extends Window {
   selfApp: Vue

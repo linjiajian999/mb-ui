@@ -7,6 +7,9 @@
     <mb-ripple style="margin-top:50px" color="red">
       <div style="width: 200px;height:100px;line-height:100px;">slot</div>
     </mb-ripple>
+    <mb-input
+      label="label"
+    ></mb-input>
   </div>
 </template>
 <script lang="ts">
