@@ -7,7 +7,7 @@
     <mb-ripple
       style="margin-top:50px"
       color="red"
-      position="center"
+      position="auto"
     >
       <span style="width: 200px;height:100px;line-height:100px;display:inline-block">slot</span>
     </mb-ripple>
