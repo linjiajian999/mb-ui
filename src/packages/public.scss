@@ -1,10 +1,10 @@
+@import './var.scss';
 .mb{
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -moz-tap-highlight-color: rgba(255, 255, 255, 0);
   -ms-tap-highlight-color: rgba(255, 255, 255, 0);
   -o-tap-highlight-color: rgba(255, 255, 255, 0);
   tap-highlight-color: rgba(255, 255, 255, 0);
-
   &-center {
     position: absolute;
     left: 50%;
@@ -15,4 +15,29 @@
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
   }
+}
+.shadow-1 {
+  box-shadow:
+    0 1px 1.5px 0 $shadowColorT1,
+    0 1px 1px 0 $shadowColorB1;
+}
+.shadow-2 {
+  box-shadow:
+    0 3px 3px 0 $shadowColorT2,
+    0 3px 3px 0 $shadowColorB2;
+}
+.shadow-3 {
+  box-shadow:
+    0 10px 10px 0 $shadowColorT3,
+    0 6px 3px 0 $shadowColorB3;
+}
+.shadow-4 {
+  box-shadow:
+    0 14px 14px 0 $shadowColorT4,
+    0 10px 5px 0 $shadowColorB4;
+}
+.shadow-5 {
+  box-shadow:
+    0 19px 19px 0 $shadowColorT5,
+    0 15px 6px 0 $shadowColorB5;
 }
