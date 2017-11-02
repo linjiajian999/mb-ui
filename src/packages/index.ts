@@ -5,11 +5,13 @@ import Ripple from './ripple'
 import Dialogs from './dialogs'
 import Input from './input'
 import Switch from './switch'
+import Button from './button'
 const list = [
   Ripple,
   Dialogs,
   Input,
-  Switch
+  Switch,
+  Button
 ]
 
 import Vue, { PluginFunction } from 'vue'
