@@ -11,7 +11,7 @@
     >
       <span style="width: 200px;height:100px;line-height:100px;display:inline-block">slot</span>
     </mb-ripple>
-    <mb-input abel="label"></mb-input>
+    <mb-input label="label"></mb-input>
     <mb-switch
       color="#9c27b0"
       size="big"
