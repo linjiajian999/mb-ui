@@ -1,13 +1,15 @@
 import './index.scss'
 import './public.scss'
 
-import Ripple from './ripple/index'
-import Dialogs from './dialogs/index'
-import Input from './input/index'
+import Ripple from './ripple'
+import Dialogs from './dialogs'
+import Input from './input'
+import Switch from './switch'
 const list = [
   Ripple,
   Dialogs,
-  Input
+  Input,
+  Switch
 ]
 
 import Vue, { PluginFunction } from 'vue'

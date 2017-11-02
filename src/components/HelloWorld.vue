@@ -4,12 +4,15 @@
     hello world {{ msg }}
     <div @click="click">computed</div>
     <div>length: {{ msgTime }}</div>
-    <mb-ripple style="margin-top:50px" color="red">
-      <div style="width: 200px;height:100px;line-height:100px;">slot</div>
+    <mb-ripple
+      style="margin-top:50px"
+      color="red"
+      position="center"
+    >
+      <span style="width: 200px;height:100px;line-height:100px;display:inline-block">slot</span>
     </mb-ripple>
-    <mb-input
-      label="label"
-    ></mb-input>
+    <mb-input abel="label"></mb-input>
+    <mb-switch color="#9c27b0"></mb-switch>
   </div>
 </template>
 <script lang="ts">
