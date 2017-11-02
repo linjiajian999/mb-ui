@@ -6,7 +6,7 @@
       val ? 'active' : 'inactive'
     ]"
   >
-    <input type="checkbox"
+    <input class="mb-hidden" type="checkbox"
       :name="name"
       :true-value="trueValue"
       :false-value="falseValue"
