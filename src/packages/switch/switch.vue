@@ -3,7 +3,8 @@
     :class="[
       'mb mb-switch',
       size === 'big' ? 'big' : '',
-      val ? 'active' : 'inactive'
+      val ? 'active' : 'inactive',
+      disable? 'disable' : ''
     ]"
   >
     <input class="mb-hidden" type="checkbox"
@@ -12,8 +13,11 @@
       :false-value="falseValue"
       @change="onchange"
       ref="input"
+      :disabled="disable"
+      :id="`mb-switch-${_uid}`"
     >
-    <label class="mb-switch-label" for=""
+    <label class="mb-switch-label"
+      :for="`mb-switch-${_uid}`"
       :style="{ color: !val ? color : '#cccccc' }"
     >{{ inactiveText }}</label>
     <div
@@ -36,11 +40,13 @@
       >
       </mb-ripple>
     </div>
-    <label class="mb-switch-label" for=""
+    <label class="mb-switch-label"
+      :for="`mb-switch-${_uid}`"
       :style="{ color: val ? color : '#cccccc' }"
     >
       {{ activeText }}
     </label>
+    <div class="mb-switch-mask"></div>
   </div>
 </template>
 <script lang="ts">
@@ -110,9 +116,9 @@ export default Vue.extend({
     onclick(): void {
       if (!this.disable) {
         this.val = !this.val
+        const inputValue = this.val ? this.trueValue : this.falseValue
+        this.$emit('input', inputValue)
       }
-      const inputValue = this.val ? this.trueValue : this.falseValue
-      this.$emit('input', inputValue)
     },
     onchange(value: any): void {
       this.val = !this.val
@@ -129,11 +135,26 @@ export default Vue.extend({
 @import '../public.scss';
 .mb-switch{
   display: inline-block;
+  position: relative;
   cursor: pointer;
   height: 36px;
   line-height: 36px;
+  &.disable {
+    opacity: 0.38;
+    cursor: not-allowed;
+  }
+  &-mask {
+    display: none;
+  }
+  &.disable &-mask {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
   .mb-switch-label {
     float: left;
+    cursor: pointer;
   }
   &-container {
     position: relative;

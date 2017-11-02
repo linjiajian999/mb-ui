@@ -23,12 +23,16 @@
       false-value="456"
       name="value"
       v-model="switchValue"
+      :disable="switchEable"
     ></mb-switch>
     <div>
       switch: {{ switchValue }}
     </div>
     <div @click="changeSwitch">
       click to change switch value
+    </div>
+     <div @click="enableSwitch">
+      click to enable switch
     </div>
   </div>
 </template>
@@ -39,7 +43,8 @@ export default Vue.extend({
     return {
       msg: '',
       msgSetTime: 0,
-      switchValue: '123'
+      switchValue: '123',
+      switchEable: true
     }
   },
   computed: {
@@ -52,8 +57,11 @@ export default Vue.extend({
       this.msg += '!'
       this.$mbDialogs.show()
     },
-    changeSwitch() {
+    changeSwitch(): void {
       this.switchValue = this.switchValue === '123' ? '456' : '123'
+    },
+    enableSwitch(): void {
+      this.switchEable = !this.switchEable
     }
   }
 })
