@@ -71,9 +71,11 @@ export default Vue.extend({
       setTimeout(_ => {
         this.isTouchMoment = false
       }, 20)
+      this.$emit('mousedown', evt)
     },
-    onMouseup(): void {
+    onMouseup(evt: MouseEvent): void {
       this.isTouch = false
+      this.$emit('mouseup', evt)
     },
     setMaskWidth(x: number, y: number): void {
       const w = this.$el.offsetWidth
