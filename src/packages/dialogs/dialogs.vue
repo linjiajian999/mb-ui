@@ -41,18 +41,18 @@ class MbDialogs extends Vue {
   hideCancel: boolean = true
 
   // methods
-  maskClick () {
+  maskClick (): void {
     this.maskClickToHide && this.close()
   }
-  show () {
+  show (): void {
     this.visiable = true
     this.callback && this.callback('show')
   }
-  close () {
+  close (): void {
     this.visiable = false
     this.callback && this.callback('close')
   }
-  onclick (action: string) {
+  onclick (action: string): void {
     this.callback && this.callback(action)
   }
 }
