@@ -19,6 +19,8 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
+import ripple from '../ripple'
+Vue.component('mb-ripple', ripple)
 import Component from 'vue-class-component'
 interface MbDialogsClass {
   callback: Function | null

@@ -5,6 +5,9 @@
     @mousedown="onMousedown($event)"
     @mouseout="onMouseup"
     @mouseup="onMouseup"
+    :style="{
+      overflow: position === 'center' ? 'unset' : 'hidden'
+    }"
   >
     <slot></slot>
     <span class="mb-ripple-container">
@@ -25,16 +28,22 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
-// import Component from 'vue-class-component'
 export default Vue.extend({
   name: 'mb-ripple',
   props: {
     color: {
       type: String,
-      default: '#000'
+      default: '#000000'
+    },
+    position: {
+      type: String,
+      default: 'auto'
+    },
+    scale: {
+      type: Number,
+      default: 0
     }
   },
-  // data
   data() {
     return {
       translateX: 0,
@@ -46,7 +55,9 @@ export default Vue.extend({
   },
   computed: {
     translate(): string {
-      return 'translate(-50%, -50%) translate(' + this.translateX + 'px,' + this.translateY + 'px)' + (this.isTouchMoment ? 'scale(0.01, 0.01)' : '')
+      return `translate(-50%, -50%)
+        translate(${ this.translateX }px, ${ this.translateY }px)
+        ${(this.isTouchMoment ? 'scale(0.0001, 0.0001)' : '')}`
     }
   },
   methods: {
@@ -55,8 +66,6 @@ export default Vue.extend({
     },
     onMousedown(evt: MouseEvent): void {
       this.setMaskWidth(evt.offsetX, evt.offsetY)
-      this.translateX = evt.offsetX
-      this.translateY = evt.offsetY
       this.isTouch = true
       this.isTouchMoment = true
       setTimeout(_ => {
@@ -69,14 +78,32 @@ export default Vue.extend({
     setMaskWidth(x: number, y: number): void {
       const w = this.$el.offsetWidth
       const h = this.$el.offsetHeight
-      const rx = x > w / 2 ? x : w - x
-      const ry = y > h / 2 ? h : h - y
-      const r = Math.sqrt(rx * rx + ry * ry)
+      let rx: number
+      let ry: number
+      let r: number
+      if (this.position === 'center') {
+        rx = w / 2
+        ry = h / 2
+        this.translateX = rx
+        this.translateY = ry
+        if (this.scale > 0) {
+          r = Math.sqrt(rx * rx + ry * ry) * this.scale
+        } else {
+          r = Math.sqrt(rx * rx + ry * ry)
+        }
+      } else {
+        rx = x > w / 2 ? x : w - x
+        ry = y > h / 2 ? h : h - y
+        this.translateX = x
+        this.translateY = y
+        r = Math.sqrt(rx * rx + ry * ry)
+      }
       this.rippleW = r * 2
     }
   }
 })
 </script>
+
 <style lang="scss">
 @import '../public.scss';
 .mb-ripple {
@@ -85,7 +112,6 @@ export default Vue.extend({
   position: relative;
   margin: 0;
   display: inline-block;
-  overflow: hidden;
   outline: none;
   cursor: pointer;
   text-decoration: none;
@@ -98,7 +124,6 @@ export default Vue.extend({
     width: 100%;
     height: 100%;
     display: block;
-    overflow: hidden;
   }
   &-content {
     display: block;
@@ -119,7 +144,7 @@ export default Vue.extend({
     transform .5s cubic-bezier(0,0,.2,1),
     width .5s cubic-bezier(0,0,.2,1),
     height .5s cubic-bezier(0,0,.2,1),
-    opacity .5s cubic-bezier(0,0,.2,1);
+    opacity .7s cubic-bezier(0,0,.2,1);
 }
 .mb-ripple .visible {
   opacity: 0.38;
