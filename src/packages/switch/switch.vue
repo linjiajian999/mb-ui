@@ -1,27 +1,46 @@
 <template>
-  <div class="mb mb-switch">
-    <!-- <input type="text"> -->
-    <div class="mb-switch-container">
+  <div
+    :class="[
+      'mb mb-switch',
+      size === 'big' ? 'big' : '',
+      val ? 'active' : 'inactive'
+    ]"
+  >
+    <input type="checkbox"
+      :name="name"
+      :true-value="trueValue"
+      :false-value="falseValue"
+      @change="onchange"
+      ref="input"
+    >
+    <label class="mb-switch-label" for=""
+      :style="{ color: !val ? color : '#cccccc' }"
+    >{{ inactiveText }}</label>
+    <div
+      class="mb-switch-container"
+      @click="onclick"
+    >
       <span class="mb-switch-toogle"
         :style="{
           backgroundColor: toogleColor
         }"
       ></span>
       <mb-ripple
-        :class="[
-          'mb-switch-button shadow-1',
-          !val ? 'mb-switch-button-inactive' : ''
-        ]"
+        class="mb-switch-button shadow-1"
         position="center"
-        :color="val ? color : '#aaa'"
+        :color="val ? color : '#aaaaaa'"
         :scale="1.7"
         :style="{
           backgroundColor: bgColor
         }"
-        @click="onclick"
       >
       </mb-ripple>
     </div>
+    <label class="mb-switch-label" for=""
+      :style="{ color: val ? color : '#cccccc' }"
+    >
+      {{ activeText }}
+    </label>
   </div>
 </template>
 <script lang="ts">
@@ -38,6 +57,31 @@ export default Vue.extend({
     disable: {
       type: Boolean,
       default: false
+    },
+    size: {
+      type: String,
+      default: 'small'
+    },
+    activeText: {
+      type: String,
+      default: ''
+    },
+    inactiveText: {
+      type: String,
+      default: ''
+    },
+    trueValue: {
+      default: true
+    },
+    falseValue: {
+      default: false
+    },
+    name: {
+      type: String,
+      default: ''
+    },
+    value: {
+      default: null
     }
   },
   data() {
@@ -54,13 +98,30 @@ export default Vue.extend({
       return this.val ? this.color : this.offColor
     }
   },
+  watch: {
+    value(val) {
+      this.val = val === this.trueValue
+    },
+    val(val: boolean) {
+      (<HTMLInputElement>this.$refs.input).checked = val
+    }
+  },
   methods: {
     onclick(): void {
-      // console.log('click')
       if (!this.disable) {
         this.val = !this.val
       }
+      const inputValue = this.val ? this.trueValue : this.falseValue
+      this.$emit('input', inputValue)
+    },
+    onchange(value: any): void {
+      this.val = !this.val
+      const inputValue = this.val ? this.trueValue : this.falseValue
+      this.$emit('input', inputValue)
     }
+  },
+  mounted() {
+    this.val = this.value === this.trueValue
   }
 })
 </script>
@@ -68,38 +129,58 @@ export default Vue.extend({
 @import '../public.scss';
 .mb-switch{
   display: inline-block;
-  width: 36px;
-  height: 48px;
   cursor: pointer;
-  user-select: none;
+  height: 36px;
+  line-height: 36px;
+  .mb-switch-label {
+    float: left;
+  }
   &-container {
     position: relative;
-    margin: 18px 1px;
+    float: left;
+    width: 36px;
+    height: 16px;
+    margin: 8px 12px 8px;
+  }
+  .big &-container {
+    height: 20px;
   }
   &-toogle {
     position: absolute;
     left: 0;
-    top: 0;
+    top: 2px;
     display: inline-block;
     width: 28px;
     height: 12px;
     border-radius: 12px;
     opacity: .38;
-    // background-color: #c6dafc;
+  }
+  .big &-toogle {
+    top: 3px;
+    width: 34px;
+    height: 14px;
+    border-radius: 14px;
   }
   &-button {
     display: inline-block;
     position: absolute;
     right: 0;
-    top: -2px;
     width: 16px;
     height: 16px;
     transition: .3s;
-    // background-color: #3367d6;
     border-radius: 50%;
-    &-inactive {
-      transform: translate(-20px, 0);
-    }
   }
+  .inactive &-button {
+    transform: translate(-20px, 0);
+  }
+  .big &-button {
+    width: 20px;
+    height: 20px;
+    transform: translate(3px, 0);
+  }
+  .inactive.big &-button {
+    transform: translate(-20px, 0);
+  }
+
 }
 </style>
