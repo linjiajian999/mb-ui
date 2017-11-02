@@ -15,5 +15,9 @@ export interface MbUiObject {
     Input: Vue
     install: PluginFunction<any>
   }
+  Switch: {
+    Switch: Vue
+    install: PluginFunction<any>
+  }
   install: PluginFunction<any>
 }
