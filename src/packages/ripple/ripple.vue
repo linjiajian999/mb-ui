@@ -1,8 +1,9 @@
 <template>
   <span
-    class="mb mb-ripple"
+    :class="['mb mb-ripple', disable ? 'disable' : '']"
     @click="click($event)"
-    @mousedown="onMousedown($event)"
+    @mouseover="onMouseover"
+    @mousedown="onMousedown"
     @mouseout="onMouseup"
     @mouseup="onMouseup"
     :style="{
@@ -42,6 +43,10 @@ export default Vue.extend({
     scale: {
       type: Number,
       default: 0
+    },
+    disable: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -62,9 +67,13 @@ export default Vue.extend({
   },
   methods: {
     click(evt: MouseEvent): void {
-      this.$emit('click', evt)
+      !this.disable && this.$emit('click', evt)
+    },
+    onMouseover(evt: MouseEvent): void {
+      this.$emit('mouseover', evt)
     },
     onMousedown(evt: MouseEvent): void {
+      if (this.disable) return
       this.setMaskWidth(evt.offsetX, evt.offsetY)
       this.isTouch = true
       this.isTouchMoment = true
@@ -74,9 +83,12 @@ export default Vue.extend({
       this.$emit('mousedown', evt)
     },
     onMouseup(evt: MouseEvent): void {
-      this.isTouch = false
+      if (this.disable) return
+      setTimeout(_ => {
+        this.isTouch = false
+      }, 20)
       this.$emit('mouseup', evt)
-    },
+    } ,
     setMaskWidth(x: number, y: number): void {
       const w = this.$el.offsetWidth
       const h = this.$el.offsetHeight
@@ -115,10 +127,12 @@ export default Vue.extend({
   margin: 0;
   display: inline-block;
   outline: none;
-  cursor: pointer;
   text-decoration: none;
   text-align: center;
   vertical-align: middle;
+  &.disable {
+    cursor: not-allowed;
+  }
   &-container {
     position: absolute;
     left: 0;
@@ -138,7 +152,6 @@ export default Vue.extend({
     opacity: 0;
     pointer-events: none;
     transform: translate(-50%, -50%);
-    // background: blue;
   }
 }
 .mb-ripple .isAnimating {

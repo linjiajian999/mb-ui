@@ -4,6 +4,7 @@
     hello world {{ msg }}
     <div @click="click">computed</div>
     <div>length: {{ msgTime }}</div>
+    <!-- ripple -->
     <div class="title">ripple:</div>
     <mb-ripple
       color="red"
@@ -11,8 +12,10 @@
     >
       <span style="width: 200px;height:100px;line-height:100px;display:inline-block">slot</span>
     </mb-ripple>
+    <!-- input -->
     <div class="title">input:</div>
     <mb-input label="label"></mb-input>
+    <!-- switch -->
     <div class="title">switch:</div>
     <mb-switch
       color="#9c27b0"
@@ -34,6 +37,16 @@
      <div @click="enableSwitch">
       click to enable switch
     </div>
+    <!-- button -->
+    <div class="title">button:</div>
+    <mb-button
+      color="rgba(255, 255, 255, .87)"
+      background-color="#29b6f6"
+      type="raised"
+      :disable="false"
+    >
+      123
+    </mb-button>
   </div>
 </template>
 <script lang="ts">
