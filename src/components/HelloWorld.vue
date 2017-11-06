@@ -14,7 +14,7 @@
     </mb-ripple>
     <!-- input -->
     <div class="title">input:</div>
-    <mb-input label="label"></mb-input>
+    <mb-input label="label" style="width: 240px;margin: 0 auto"></mb-input>
     <!-- switch -->
     <div class="title">switch:</div>
     <mb-switch
