@@ -83,7 +83,6 @@ $aniDuration: .3s;
   position: absolute;
   min-width: 256px;
   max-width: 80%;
-  // width: 80%;
   background-color: #fff;
   display: inline-block;
   border-radius: 2px;
@@ -97,8 +96,9 @@ $aniDuration: .3s;
     padding: 24px 24px 0px 24px;
     margin-bottom: 20px;
     font-size: 20px;
-    font-weight: 400;
+    font-weight: 500;
     text-align: left;
+    letter-spacing: 0.005em;
   }
   &-content {
     padding: 0 24px 20px 24px;

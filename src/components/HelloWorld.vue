@@ -10,7 +10,9 @@
       color="red"
       position="auto"
     >
-      <span style="width: 200px;height:100px;line-height:100px;display:inline-block">slot</span>
+      <span style="width: 200px;height:100px;line-height:100px;display:inline-block">
+        <div>slot</div>
+      </span>
     </mb-ripple>
     <!-- input -->
     <div class="title">input:</div>

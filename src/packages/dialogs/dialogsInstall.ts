@@ -19,15 +19,18 @@ const defaultOptions: DefaultOptions = {
   slot: null,
   hideCancel: true
 }
+const getDefault = function (): DefaultOptions {
+  const options: any = {}
+  for (let prop in defaultOptions) {
+    options[prop] = defaultOptions[prop]
+  }
+  return options as DefaultOptions
+}
 const merge = function (source: any, ...target: any[]): any {
   for (var i = 1; i < target.length; i++) {
     const mergeObj = target[i]
     for (let prop in mergeObj) {
-      if (mergeObj.hasOwnProperty(prop)) {
-        if (mergeObj[prop] !== undefined) {
-          source[prop] = mergeObj[prop]
-        }
-      }
+      source[prop] = mergeObj[prop]
     }
   }
   return source
@@ -42,11 +45,11 @@ let promiseStack: PromiseStack[] = []
 const setDialogsOptions = function(dialog: MbDialogsClass, options?: ShowOptions) {
   let mergeOption: DefaultOptions = defaultOptions
   if (typeof options === 'object') {
-    mergeOption = merge(defaultOptions, options)
-    for (let opt in mergeOption) {
-      if (opt !== 'callback') {
-        dialog[opt] = mergeOption[opt]
-      }
+    mergeOption = merge(getDefault(), options)
+  }
+  for (let opt in mergeOption) {
+    if (opt !== 'callback') {
+      dialog[opt] = mergeOption[opt]
     }
   }
   dialog.callback = function(action: string) {
