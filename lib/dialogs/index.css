@@ -160,8 +160,9 @@
     padding: 24px 24px 0px 24px;
     margin-bottom: 20px;
     font-size: 20px;
-    font-weight: 400;
+    font-weight: 500;
     text-align: left;
+    letter-spacing: 0.005em;
 }
 .mb-dialogs-content {
     padding: 0 24px 20px 24px;

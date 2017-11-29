@@ -185,8 +185,8 @@
     border-radius: 50%;
 }
 .inactive .mb-switch-button {
-    -webkit-transform: translate(-20px, 0);
-            transform: translate(-20px, 0);
+    -webkit-transform: translate(-28px, 0);
+            transform: translate(-28px, 0);
 }
 .big .mb-switch-button {
     width: 20px;

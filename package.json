@@ -1,6 +1,6 @@
 {
   "name": "vue-mb-ui",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "a vue ui-framework with typescript",
   "author": "linjiajian999",
   "file": [
@@ -37,10 +37,6 @@
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
-  },
-  "dependencies": {
-    "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
@@ -111,6 +107,8 @@
     "ts-loader": "^3.1.0",
     "typescript-eslint-parser": "^8.0.1",
     "url-loader": "^0.5.8",
+    "vue": "^2.5.2",
+    "vue-router": "^3.0.1",
     "vue-class-component": "^6.0.0",
     "vue-loader": "^13.3.0",
     "vue-style-loader": "^3.0.1",

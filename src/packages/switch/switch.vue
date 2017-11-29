@@ -126,7 +126,7 @@ export default Vue.extend({
       this.$emit('input', inputValue)
     }
   },
-  mounted() {
+  mounted(): void {
     this.val = this.value === this.trueValue
   }
 })
@@ -192,7 +192,7 @@ export default Vue.extend({
     border-radius: 50%;
   }
   .inactive &-button {
-    transform: translate(-20px, 0);
+    transform: translate(-28px, 0);
   }
   .big &-button {
     width: 20px;
