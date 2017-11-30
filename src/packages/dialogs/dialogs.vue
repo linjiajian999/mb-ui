@@ -20,43 +20,41 @@
 <script lang="ts">
 import Vue from 'vue'
 import ripple from '../ripple'
-Vue.component('mb-ripple', ripple)
-import Component from 'vue-class-component'
-interface MbDialogsClass {
-  callback: Function | null
-  show(): void
-  close(): void
-  [key: string]: any
-}
-@Component
-class MbDialogs extends Vue {
-  visiable: boolean = true
-  title: string = '提示'
-  content: string = '内容文字'
-  confirm: string = '確定'
-  cancel: string = '取消'
-  maskClickToHide: boolean = false
-  callback: Function | null = null
-  classObj: Function | null = null
-  hideCancel: boolean = true
-
-  // methods
-  maskClick (): void {
-    this.maskClickToHide && this.close()
+// Vue.component('mb-ripple', ripple)
+// import Component from 'vue-class-component'
+export default Vue.extend({
+  name: 'mb-dialogs',
+  data() {
+    return {
+      visiable: true,
+      title: '提示',
+      content: '内容文字',
+      confirm: '確定',
+      cancel: '取消',
+      maskClickToHide: false,
+      callback: null,
+      classObj: null,
+      hideCancel: true
+    }
+  },
+  methods: {
+    // methods
+    maskClick (): void {
+      this.maskClickToHide && this.close()
+    },
+    show (): void {
+      this.visiable = true
+      this.callback && this.callback!('show')
+    },
+    close (): void {
+      this.visiable = false
+      this.callback && this.callback!('close')
+    },
+    onclick (action: string): void {
+      this.callback && this.callback!(action)
+    }
   }
-  show (): void {
-    this.visiable = true
-    this.callback && this.callback('show')
-  }
-  close (): void {
-    this.visiable = false
-    this.callback && this.callback('close')
-  }
-  onclick (action: string): void {
-    this.callback && this.callback(action)
-  }
-}
-export default MbDialogs
+})
 </script>
 <style lang="scss">
 @import '../public.scss';

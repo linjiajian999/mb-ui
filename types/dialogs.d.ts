@@ -1,6 +1,6 @@
 import Vue, { PluginFunction } from 'vue'
 export declare interface MbDialogsClass extends Vue {
-  callback: Function
+  callback: Function | null
   show(): void
   close(): void
   [key: string]: any
