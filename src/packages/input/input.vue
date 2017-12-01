@@ -7,7 +7,7 @@
       :class="['mb-input', {
         float: type === 'float',
         foucus: isFoucus,
-        active: isFoucus || value !== '',
+        active: isFoucus || inputValue !== '',
         error: isShowMsg
       }]"
     >
