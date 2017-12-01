@@ -109,14 +109,14 @@
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
-.mb-dialogs-ani-enter .mb-dialogs, .mb-dialogs-ani-leave-to .mb-dialogs {
-  -webkit-transform: scale(0.9) translate(-50%, -50%);
-          transform: scale(0.9) translate(-50%, -50%);
-}
 .mb-dialogs-ani-enter-to, .mb-dialogs-ani-leave {
   opacity: 1;
   -webkit-transition: 0.3s;
   transition: 0.3s;
+}
+.mb-dialogs-ani-enter .mb-dialogs, .mb-dialogs-ani-leave-to .mb-dialogs {
+  -webkit-transform: scale(0.9) translate(-50%, -50%);
+          transform: scale(0.9) translate(-50%, -50%);
 }
 .mb-dialogs-ani-enter-to .mb-dialogs, .mb-dialogs-ani-leave .mb-dialogs {
   -webkit-transform: scale(1) translate(-50%, -50%);
