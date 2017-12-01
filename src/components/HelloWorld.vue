@@ -16,7 +16,9 @@
     </mb-ripple>
     <!-- input -->
     <div class="title">input:</div>
-    <mb-input label="label" style="width: 240px;margin: 0 auto"></mb-input>
+    <mb-input label="label" style="width: 240px;margin: 0 auto" v-model="inputValue"></mb-input>
+    <div> input value: {{ inputValue }} </div>
+    <mb-button color="#fff" @click="changeInputValue"> change input value </mb-button>
     <!-- switch -->
     <div class="title">switch:</div>
     <mb-switch
@@ -58,6 +60,7 @@ export default Vue.extend({
     return {
       msg: '',
       msgSetTime: 0,
+      inputValue: '',
       switchValue: '123',
       switchEable: true
     }
@@ -71,6 +74,9 @@ export default Vue.extend({
     click (evt: any): void {
       this.msg += '!'
       this.$mbDialogs.show()
+    },
+    changeInputValue() {
+      this.inputValue += '+'
     },
     changeSwitch(): void {
       this.switchValue = this.switchValue === '123' ? '456' : '123'
