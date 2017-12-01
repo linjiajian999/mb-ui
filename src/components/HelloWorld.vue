@@ -74,7 +74,12 @@ export default Vue.extend({
   methods: {
     click (evt: any): void {
       this.msg += '!'
-      this.$mbDialogs.show()
+      this.$mbDialogs.show({
+        title: 'dialogs 提示',
+        content: 'dialogs content'
+      }).then((action: string) => {
+        console.log(action)
+      })
     },
     changeInputValue() {
       this.inputValue += '+'
