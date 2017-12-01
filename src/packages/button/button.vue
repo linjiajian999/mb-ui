@@ -19,7 +19,7 @@
       @mouseout="onMouseout"
       @mouseup="onMouseup"
       @click="onclick"
-      color="rgba(0, 0, 0, .97)"
+      :color="rippleColor"
       :disable="disable"
     >
       <slot></slot>
@@ -48,7 +48,7 @@ export default Vue.extend({
     },
     rippleColor: {
       type: String,
-      default: ''
+      default: 'rgba(0, 0, 0, .97)'
     },
     disable: {
       type: Boolean,
