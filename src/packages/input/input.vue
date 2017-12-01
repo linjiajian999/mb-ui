@@ -19,7 +19,9 @@
         @keyup.enter="onkeyup"
         @compositionstart="compositionstart"
         @compositionend="compositionend"
-        v-model="value"
+        @change="onchange"
+        @input="oninput"
+        v-model="inputValue"
       >
       <label v-show="isShowLabel" class="mb-input-label" :for="'mb-input' + _uid">
         {{ label }}
@@ -48,6 +50,9 @@ export default {
     },
     label: {
       default: ''
+    },
+    value: {
+      default: ''
     }
   },
   computed: {
@@ -59,8 +64,13 @@ export default {
     return {
       isFoucus: false,
       isShowMsg: false,
-      value: '',
+      inputValue: '',
       isInput: false
+    }
+  },
+  watch: {
+    value(val) {
+      this.inputValue = val
     }
   },
   methods: {
@@ -74,6 +84,13 @@ export default {
     },
     onkeyup(evt) {
       this.$emit('enter', evt)
+    },
+    onchange(evt) {
+      this.$emit('change', evt)
+      this.$emit('input', this.inputValue)
+    },
+    oninput(evt) {
+      this.$emit('input', this.inputValue)
     },
     compositionstart(val) {
       this.isInput = true
