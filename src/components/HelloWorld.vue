@@ -18,7 +18,7 @@
     <div class="title">input:</div>
     <mb-input label="label" style="width: 240px;margin: 0 auto" v-model="inputValue"></mb-input>
     <div> input value: {{ inputValue }} </div>
-    <mb-button color="#fff" @click="changeInputValue"> change input value </mb-button>
+    <mb-button ripple-color="#fff" color="#fff" @click="changeInputValue"> change input value </mb-button>
     <!-- switch -->
     <div class="title">switch:</div>
     <mb-switch
@@ -46,6 +46,7 @@
     <mb-button
       color="rgba(255, 255, 255, .87)"
       background-color="#29b6f6"
+      ripple-color="#fff"
       type="raised"
       :disable="false"
     >
