@@ -26,7 +26,7 @@ export default Vue.extend({
   name: 'mb-dialogs',
   data() {
     return {
-      visiable: true,
+      visiable: false,
       title: '提示',
       content: '内容文字',
       confirm: '確定',
@@ -130,12 +130,12 @@ $aniDuration: .3s;
     opacity: 0;
     transition: $aniDuration;
   }
-  &-enter .mb-dialogs, &-leave-to .mb-dialogs{
-    transform: scale(.9) translate(-50%, -50%);
-  }
   &-enter-to, &-leave {
     opacity: 1;
     transition: $aniDuration;
+  }
+  &-enter .mb-dialogs, &-leave-to .mb-dialogs{
+    transform: scale(.9) translate(-50%, -50%);
   }
   &-enter-to .mb-dialogs, &-leave .mb-dialogs{
     transform: scale(1) translate(-50%, -50%);

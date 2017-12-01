@@ -27,7 +27,7 @@ const getDefault = function (): DefaultOptions {
   return options as DefaultOptions
 }
 const merge = function (source: any, ...target: any[]): any {
-  for (var i = 1; i < target.length; i++) {
+  for (var i = 0; i < target.length; i++) {
     const mergeObj = target[i]
     for (let prop in mergeObj) {
       source[prop] = mergeObj[prop]
@@ -47,11 +47,13 @@ const setDialogsOptions = function(dialog: MbDialogsClass, options?: ShowOptions
   if (typeof options === 'object') {
     mergeOption = merge(getDefault(), options)
   }
+
   for (let opt in mergeOption) {
     if (opt !== 'callback') {
       dialog[opt] = mergeOption[opt]
     }
   }
+
   dialog.callback = function(action: string) {
     if (action === 'close') {
       setTimeout(function() {
@@ -74,33 +76,30 @@ const setDialogsOptions = function(dialog: MbDialogsClass, options?: ShowOptions
       mergeOption.callback!(action)
     }
   }
+  dialog.show()
 }
 const install: PluginFunction<any> = function (vue: typeof Vue, options?: any): void {
   const $mbDialogs: MbDialogsObj = {
-    show (options?: ShowOptions): Promise<any> | void {
+    show (options?: ShowOptions): Promise<string> {
       const dialog = new MbDialogsVue({
         el: document.createElement('div')
       })
       document.body.appendChild(dialog.$el)
       setDialogsOptions(dialog as MbDialogsClass, options)
       showingStack.push(dialog as MbDialogsClass)
-      if (typeof Promise !== 'undefined') {
-        return new Promise(function(resolve, reject) {
-          promiseStack.push({
-            resolve,
-            reject
-          })
+      return new Promise(function(resolve, reject) {
+        promiseStack.push({
+          resolve,
+          reject
         })
-      }
+      })
     },
     close (): void {
       if (showingStack.length >= 1) {
         const dialog = showingStack.pop() as MbDialogsClass
         dialog.close()
-        if (typeof Promise !== 'undefined') {
-          const promise = promiseStack.pop()
-          promise!.resolve('close')
-        }
+        const promise = promiseStack.pop()
+        promise!.resolve('close')
       }
     },
     setDefault(options: ShowOptions): void {

@@ -23,8 +23,8 @@ export declare interface ShowOptions {
   [key: string]: any
 }
 export declare interface MbDialogsObj {
-  show(options?: ShowOptions): Promise<any> | void
-  close(): Promise<any> | void
+  show(options?: ShowOptions): Promise<string>
+  close(): void
   setDefault(options: ShowOptions): void
 }
 export declare interface dialogsPlugin {
