@@ -38,7 +38,7 @@
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
-  "dependencies": {
+  "peerDependencies": {
     "vue": "^2.5.2"
   },
   "devDependencies": {
@@ -110,6 +110,7 @@
     "ts-loader": "^3.1.0",
     "typescript-eslint-parser": "^8.0.1",
     "url-loader": "^0.5.8",
+    "vue": "^2.5.2",
     "vue-router": "^3.0.1",
     "vue-class-component": "^6.0.0",
     "vue-loader": "^13.3.0",
