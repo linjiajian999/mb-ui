@@ -22,6 +22,7 @@
         @change="onchange"
         @input="oninput"
         v-model="inputValue"
+        ref="input"
       >
       <label v-show="isShowLabel" class="mb-input-label" :for="'mb-input' + _uid">
         {{ label }}
@@ -37,76 +38,64 @@
     </div>
   </div>
 </template>
-<script>
-export default {
-  name: 'mb-input',
-  props: {
-    type: {
-      default: 'float'
-    },
-    color: {
-      default: '#ff00ff',
-      type: String
-    },
-    label: {
-      default: ''
-    },
-    value: {
-      default: ''
-    }
-  },
-  computed: {
-    isShowLabel() {
-      return (this.value === '' && !this.isInput) || this.type === 'float'
-    }
-  },
-  data() {
-    return {
-      isFoucus: false,
-      isShowMsg: false,
-      inputValue: '',
-      isInput: false
-    }
-  },
-  watch: {
-    value(val) {
-      this.inputValue = val
-    }
-  },
-  methods: {
-    onfocus(evt) {
-      this.isFoucus = true
-      this.$emit('focus', evt)
-    },
-    onblur(evt) {
-      this.isFoucus = false
-      this.$emit('blur', evt)
-    },
-    onkeyup(evt) {
-      this.$emit('enter', evt)
-    },
-    onchange(evt) {
-      this.$emit('change', evt)
-      this.$emit('input', this.inputValue)
-    },
-    oninput(evt) {
-      this.$emit('input', this.inputValue)
-    },
-    compositionstart(val) {
-      this.isInput = true
-    },
-    compositionend(val) {
-      this.isInput = false
-    }
-  },
+<script lang="ts">
+import { Vue, Component, Prop, Watch } from "vue-property-decorator"
+@Component({
+  name: 'mb-input'
+})
+export default class Input extends Vue {
+  @Prop({ default: 'float' })
+  type: string
+
+  @Prop({ default: 'ff00ff' })
+  color: string
+
+  @Prop({ default: '', type: [String, Number] })
+  label: string | number
+
+  @Prop({ default: '', type: [String, Number] })
+  value: string | number
+
+  isFoucus: boolean = false
+  isShowMsg: boolean = false
+  inputValue: string | number = ''
+  isInput: boolean = false
+
+  get isShowLabel(): boolean {
+    return (this.value === '' && !this.isInput) || this.type === 'float'
+  }
+  @Watch('value')
+  onValueChanged(val: string | number): void {
+    this.inputValue = val
+  }
+
+  onfocus(evt: FocusEvent): void {
+    this.isFoucus = true
+    this.$emit('focus', evt)
+  }
+  onblur(): void {
+    this.isFoucus = false
+    this.$emit('blur')
+  }
+  onkeyup(evt: KeyboardEvent): void {
+    this.$emit('enter', evt)
+  }
+  onchange(evt: Event) : void {
+    this.$emit('change', evt)
+    this.$emit('input', this.inputValue)
+  }
+  oninput(evt: Event) : void {
+    this.$emit('input', this.inputValue)
+  }
+  compositionstart() : void {
+    this.isInput = true
+  }
+  compositionend() : void {
+    this.isInput = false
+  }
   mounted() {
-    // console.log(this)
-    let input
     for (let attr in this.$attrs) {
-      if (!input) {
-        input = this.$el.querySelector('input')
-      }
-      input.setAttribute(attr, this.$attrs[attr])
+      (<Element>this.$refs.input).setAttribute(attr, this.$attrs[attr])
     }
   }
 }

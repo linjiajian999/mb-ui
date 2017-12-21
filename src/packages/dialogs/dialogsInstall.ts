@@ -1,16 +1,43 @@
-// @interface
-import {
-  MbDialogsClass,
-  DefaultOptions,
-  ShowOptions,
-  MbDialogsObj
-} from '../../../types/dialogs'
-
 import Vue, { PluginFunction } from 'vue'
-import MbDialogsVue from './dialogs.vue'
+import Dialogs from './dialogs.vue'
+/**
+ * interface
+ */
+export interface DefaultOptions {
+  title: string
+  confirm: string
+  cancel: string
+  callback: null
+  slot: null
+  hideCancel: boolean
+  [key: string]: any
+}
+export interface ShowOptions {
+  title?: string
+  confirm?: string
+  cancel?: string
+  callback?: Function | null
+  hideCancel?: null | boolean
+  [key: string]: any
+}
+export interface MbDialogsObj {
+  show(options?: ShowOptions): Promise<string>
+  close(): void
+  setDefault(options: ShowOptions): void
+}
+export interface PromiseStack {
+  resolve: Function
+  reject: Function | null | undefined
+}
+declare module 'vue/types/vue' {
+  interface Vue {
+    $mbDialogs: MbDialogsObj
+  }
+}
+/**
+ * implements
+ */
 
-// @implement
-// instance
 const defaultOptions: DefaultOptions = {
   title: '提示',
   confirm: '確定',
@@ -26,31 +53,27 @@ const getDefault = function (): DefaultOptions {
   }
   return options as DefaultOptions
 }
-const merge = function (source: any, ...target: any[]): any {
-  for (var i = 0; i < target.length; i++) {
-    const mergeObj = target[i]
-    for (let prop in mergeObj) {
-      source[prop] = mergeObj[prop]
-    }
+const merge = function (source: DefaultOptions, target: ShowOptions): DefaultOptions {
+  for (let prop in target) {
+    source[prop] = target[prop]
   }
   return source
 }
-interface PromiseStack {
-  resolve: Function
-  reject: Function | null | undefined
-}
-let showingStack: MbDialogsClass[] = []
+
+let showingStack: Dialogs[] = []
 let promiseStack: PromiseStack[] = []
 
-const setDialogsOptions = function(dialog: MbDialogsClass, options?: ShowOptions) {
-  let mergeOption: DefaultOptions = defaultOptions
+const setDialogsOptions = function(dialog: Dialogs, options?: ShowOptions) {
+  let mergeOption: DefaultOptions = getDefault()
   if (typeof options === 'object') {
-    mergeOption = merge(getDefault(), options)
+    mergeOption = merge(getDefault(), options) as DefaultOptions
   }
 
   for (let opt in mergeOption) {
     if (opt !== 'callback') {
-      dialog[opt] = mergeOption[opt]
+      if (Object.hasOwnProperty.call(dialog, opt)) {
+        dialog[opt] = mergeOption[opt]
+      }
     }
   }
 
@@ -60,7 +83,7 @@ const setDialogsOptions = function(dialog: MbDialogsClass, options?: ShowOptions
         document.body.removeChild(dialog.$el)
       }, 300)
     } else if (action === 'cancel' || action === 'confirm') {
-      let popDialogs: MbDialogsClass | null
+      let popDialogs: Dialogs | null
       let popPromise: PromiseStack | null
       for (var i = 0; i < showingStack.length; i++) {
         popDialogs = showingStack.splice(i, 1)[0]
@@ -81,12 +104,12 @@ const setDialogsOptions = function(dialog: MbDialogsClass, options?: ShowOptions
 const install: PluginFunction<any> = function (vue: typeof Vue, options?: any): void {
   const $mbDialogs: MbDialogsObj = {
     show (options?: ShowOptions): Promise<string> {
-      const dialog = new MbDialogsVue({
+      const dialog = new Dialogs({
         el: document.createElement('div')
       })
       document.body.appendChild(dialog.$el)
-      setDialogsOptions(dialog as MbDialogsClass, options)
-      showingStack.push(dialog as MbDialogsClass)
+      setDialogsOptions(dialog, options)
+      showingStack.push(dialog)
       return new Promise(function(resolve, reject) {
         promiseStack.push({
           resolve,
@@ -96,7 +119,7 @@ const install: PluginFunction<any> = function (vue: typeof Vue, options?: any): 
     },
     close (): void {
       if (showingStack.length >= 1) {
-        const dialog = showingStack.pop() as MbDialogsClass
+        const dialog: Dialogs = showingStack.pop()!
         dialog.close()
         const promise = promiseStack.pop()
         promise!.resolve('close')

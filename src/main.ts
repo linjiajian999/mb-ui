@@ -2,12 +2,12 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App.vue'
-import router from './router/index.js'
+import router from './router'
 
 Vue.config.productionTip = false
 
 import mb from './packages'
-Vue.use(mb.install)
+Vue.use(mb)
 
 /* eslint-disable no-new */
 declare interface myWindow extends Window {
@@ -26,5 +26,5 @@ setTimeout((): any =>  {
       }
     }
   })
-})
+}, 0)
 

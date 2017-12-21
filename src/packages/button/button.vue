@@ -27,75 +27,63 @@
   </div>
 </template>
 <script lang="ts">
-import Vue from 'vue'
+import { Vue, Component, Prop } from "vue-property-decorator"
 import ripple from '../ripple'
 Vue.use(ripple)
+
 enum ButtonType {
   raised = 'raised',
   flat = 'flat',
   floating = 'floating'
 }
-export default Vue.extend({
-  name: 'mb-button',
-  props: {
-    color: {
-      type: String,
-      default: 'rgba(0, 0, 0, .87)'
-    },
-    backgroundColor: {
-      type: String,
-      default: ''
-    },
-    rippleColor: {
-      type: String,
-      default: 'rgba(0, 0, 0, .97)'
-    },
-    disable: {
-      type: Boolean,
-      default: false
-    },
-    type: {
-      type: String,
-      default: 'raised'
-    },
-    href: {
-      type: String,
-      default: ''
-    }
-  },
-  data() {
-    return {
-      isFoucus: false
-    }
-  },
-  computed: {
-    shadowClass(): string {
-      if (this.type === ButtonType.flat) return ''
-      return this.isFoucus ? 'shadow-2' : 'shadow-1'
-    }
-  },
-  methods: {
-    onclick(evt: MouseEvent): void {
-      this.$emit('click', evt)
-    },
-    onMouseover(evt: MouseEvent): void {
-      this.isFoucus = true
-      this.$emit('mouseover', evt)
-    },
-    onMousedown(evt: MouseEvent): void {
-      this.isFoucus = true
-      this.$emit('mousedown', evt)
-    },
-    onMouseout(evt: MouseEvent): void {
-      this.isFoucus = false
-      this.$emit('mousedown', evt)
-    },
-    onMouseup(evt: MouseEvent): void {
-      this.isFoucus = false
-      this.$emit('mousedown', evt)
-    }
-  }
+
+@Component({
+  name: 'mb-button'
 })
+export default class Button extends Vue{
+  @Prop({ default: ButtonType.raised})
+  type: string
+
+  @Prop({ default: ''})
+  href: string
+
+  @Prop({ default: false})
+  disable: boolean
+
+  @Prop({ default: 'rgba(0, 0, 0, .87)'})
+  color: string
+
+  @Prop({ default: ''})
+  backgroundColor: string
+
+  @Prop({ default: 'rgba(0, 0, 0, .97)'})
+  rippleColor: string
+
+  isFoucus: boolean = false
+  get shadowClass(): string {
+    if (this.type === ButtonType.flat) return ''
+    return this.isFoucus ? 'shadow-2' : 'shadow-1'
+  }
+  onclick(evt: MouseEvent): void {
+    this.$emit('click', evt)
+  }
+  onMouseover(evt: MouseEvent): void {
+    this.isFoucus = true
+    this.$emit('mouseover', evt)
+  }
+  onMousedown(evt: MouseEvent): void {
+    this.isFoucus = true
+    this.$emit('mousedown', evt)
+  }
+  onMouseout(evt: MouseEvent): void {
+    this.isFoucus = false
+    this.$emit('mousedown', evt)
+  }
+  onMouseup(evt: MouseEvent): void {
+    this.isFoucus = false
+    this.$emit('mousedown', evt)
+  }
+}
 </script>
 <style lang="scss">
 $buttonColor: #0096eb;
@@ -104,7 +92,6 @@ $buttonBackgroundColor: #0088dd;
   &-container {
     display: inline-block;
   }
-  width: auto;
   border: none;
   border-radius: 2px;
   height: 36px;

@@ -6,26 +6,31 @@ import Dialogs from './dialogs'
 import Input from './input'
 import Switch from './switch'
 import Button from './button'
-const list = [
+
+import Vue, { PluginFunction } from 'vue'
+
+export interface MbComponent<V> {
+  component: V
+  install: PluginFunction<any>
+}
+
+export interface ComponentList {
+  [key: string]: MbComponent<any>
+}
+export const list: ComponentList = {
   Ripple,
   Dialogs,
   Input,
   Switch,
   Button
-]
+}
 
-import Vue, { PluginFunction } from 'vue'
 const install: PluginFunction<any> = function (vue: typeof Vue, options?: any) {
-  list.forEach((plugin) => {
-    if (typeof plugin.install === 'function') {
-      vue.use(plugin.install)
+  console.log(list)
+  for (let component in list) {
+    if (typeof list[component].install === 'function') {
+      vue.use(list[component].install)
     }
-  })
+  }
 }
-export {
-  install
-}
-export default {
-  ...list,
-  install
-}
+export default install

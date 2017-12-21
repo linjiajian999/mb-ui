@@ -9,7 +9,7 @@ const resolvePath = (dir) => {
 
 module.exports = {
   entry: {
-    docs: './docs/src/index.js'
+    docs: ''
   },
   output: {
     path: config.build.assetsRoot,
@@ -52,6 +52,10 @@ module.exports = {
         exclude: /node_modules/,
         options: {
           appendTsSuffixTo: [/\.vue$/],
+          compilerOptions: {
+            declaration: true,
+            declarationDir:  resolvePath('dist/types')
+          }
         }
       },
       {

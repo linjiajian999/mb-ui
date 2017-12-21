@@ -1,12 +1,12 @@
 import Dialogs from './dialogs.vue'
 import install from './dialogsInstall'
 
-export {
-  install,
-  Dialogs
-}
+import {
+  MbComponent
+} from '../index'
 
-export default {
-  Dialogs,
+const dialogsCompoent: MbComponent<typeof Dialogs> = {
+  component: Dialogs,
   install
 }
+export default dialogsCompoent

@@ -8,7 +8,7 @@
     ]"
   >
     <input class="mb-hidden" type="checkbox"
-      :name="name"
+      :name="inputName"
       :true-value="trueValue"
       :false-value="falseValue"
       @change="onchange"
@@ -50,86 +50,78 @@
   </div>
 </template>
 <script lang="ts">
-import Vue from 'vue'
+import { Vue, Component, Prop, Watch } from "vue-property-decorator"
 import ripple from '../ripple'
-Vue.component('mb-ripple', ripple)
-export default Vue.extend({
-  name: 'mb-switch',
-  props: {
-    color: {
-      type: String,
-      default: '#3367d6'
-    },
-    disable: {
-      type: Boolean,
-      default: false
-    },
-    size: {
-      type: String,
-      default: 'small'
-    },
-    activeText: {
-      type: String,
-      default: ''
-    },
-    inactiveText: {
-      type: String,
-      default: ''
-    },
-    trueValue: {
-      default: true
-    },
-    falseValue: {
-      default: false
-    },
-    name: {
-      type: String,
-      default: ''
-    },
-    value: {
-      default: null
-    }
-  },
-  data() {
-    return {
-      offColor: '#eee',
-      val: true
-    }
-  },
-  computed: {
-    toogleColor(): string {
-      return this.val ? this.color : '#000'
-    },
-    bgColor(): string {
-      return this.val ? this.color : this.offColor
-    }
-  },
-  watch: {
-    value(val) {
-      this.val = val === this.trueValue
-    },
-    val(val: boolean) {
-      (<HTMLInputElement>this.$refs.input).checked = val
-    }
-  },
-  methods: {
-    onclick(): void {
-      if (!this.disable) {
-        this.val = !this.val
-        const inputValue = this.val ? this.trueValue : this.falseValue
-        this.$emit('input', inputValue)
-      }
-    },
-    onchange(value: any): void {
+Vue.use(ripple)
+@Component({
+  name: 'mb-switch'
+})
+export default class Switch extends Vue{
+
+  @Prop({ default: '#3367d6' })
+  color: string
+
+  @Prop({ default: 'big' })
+  size: string
+
+  @Prop({ default: false })
+  disable: boolean
+
+  @Prop({ default: '' })
+  activeText: string
+
+  @Prop({ default: '' })
+  inactiveText: string
+
+  @Prop({ default: true })
+  trueValue: boolean
+
+  @Prop({ default: false })
+  falseValue: boolean
+
+  @Prop({ default: '' })
+  inputName: string
+
+  @Prop({ default: false })
+  value: boolean
+
+  // data
+  offColor: string = '#eee'
+  val: boolean = true
+
+  get toogleColor(): string {
+    return this.val ? this.color : '#000'
+  }
+  get bgColor(): string {
+    return this.val ? this.color : this.offColor
+  }
+
+  @Watch('value')
+  onValueChange(value: boolean) {
+    this.val = value === this.trueValue
+  }
+  @Watch('val')
+  onValChange(val: boolean) {
+    (<HTMLInputElement>this.$refs.input).checked = val
+  }
+
+  // methods
+  onclick(): void {
+    if (!this.disable) {
       this.val = !this.val
       const inputValue = this.val ? this.trueValue : this.falseValue
       this.$emit('input', inputValue)
     }
-  },
+  }
+  onchange(value: any): void {
+    this.val = !this.val
+    const inputValue = this.val ? this.trueValue : this.falseValue
+    this.$emit('input', inputValue)
+  }
   mounted(): void {
     this.val = this.value === this.trueValue
   }
-})
+}
 </script>
 <style lang="scss">
 @import '../public.scss';

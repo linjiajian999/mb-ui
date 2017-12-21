@@ -18,43 +18,38 @@
   </transition>
 </template>
 <script lang="ts">
-import Vue from 'vue'
+import { Vue, Component } from "vue-property-decorator"
 import ripple from '../ripple'
-// Vue.component('mb-ripple', ripple)
-// import Component from 'vue-class-component'
-export default Vue.extend({
-  name: 'mb-dialogs',
-  data() {
-    return {
-      visiable: false,
-      title: '提示',
-      content: '内容文字',
-      confirm: '確定',
-      cancel: '取消',
-      maskClickToHide: false,
-      callback: null,
-      classObj: null,
-      hideCancel: true
-    }
-  },
-  methods: {
-    // methods
-    maskClick (): void {
-      this.maskClickToHide && this.close()
-    },
-    show (): void {
-      this.visiable = true
-      this.callback && this.callback!('show')
-    },
-    close (): void {
-      this.visiable = false
-      this.callback && this.callback!('close')
-    },
-    onclick (action: string): void {
-      this.callback && this.callback!(action)
-    }
-  }
+@Component({
+  name: 'mb-dialogs'
 })
+export default class Dialogs extends Vue{
+  // data
+  visiable: boolean = false
+  title: string = '提示'
+  content: string ='内容文字'
+  confirm: string ='確定'
+  cancel: string ='取消'
+  maskClickToHide: boolean | string = false
+  callback: ((state: string) => void) | null = null
+  hideCancel: boolean = true
+
+  // methods
+  maskClick (): void {
+    this.maskClickToHide && this.close()
+  }
+  show (): void {
+    this.visiable = true
+    this.callback && this.callback!('show')
+  }
+  close (): void {
+    this.visiable = false
+    this.callback && this.callback!('close')
+  }
+  onclick (action: string): void {
+    this.callback && this.callback!(action)
+  }
+}
 </script>
 <style lang="scss">
 @import '../public.scss';
@@ -84,7 +79,7 @@ $aniDuration: .3s;
   background-color: #fff;
   display: inline-block;
   border-radius: 2px;
-  transition: transform $aniDuration ease;
+  transition: transform $aniDuration ease-in-out;
   transform-origin: left top;
   box-shadow:
     0 3px 7px 1px rgba(0, 0, 0, 0.19),
@@ -135,7 +130,7 @@ $aniDuration: .3s;
     transition: $aniDuration;
   }
   &-enter .mb-dialogs, &-leave-to .mb-dialogs{
-    transform: scale(.9) translate(-50%, -50%);
+    transform: scale(.8) translate(-50%, -50%);
   }
   &-enter-to .mb-dialogs, &-leave .mb-dialogs{
     transform: scale(1) translate(-50%, -50%);
