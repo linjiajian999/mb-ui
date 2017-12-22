@@ -17,6 +17,13 @@ export interface MbComponent<V> {
 export interface ComponentList {
   [key: string]: MbComponent<any>
 }
+export {
+  Ripple,
+  Dialogs,
+  Input,
+  Switch,
+  Button
+}
 export const list: ComponentList = {
   Ripple,
   Dialogs,

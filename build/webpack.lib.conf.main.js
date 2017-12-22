@@ -102,7 +102,7 @@ const libConfig = {
       sourceMap: false
     }),
     new webpack.DefinePlugin({
-      'process.env': process.env.NODE_ENV
+      'process.env.NODE_ENV': JSON.stringify('production')
     }),
     new webpack.BannerPlugin({
       banner: `/*!\n* mb-ui v${version}\n* author: linjiajian999\n* MIT License\n*/\n`,
