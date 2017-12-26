@@ -10,14 +10,15 @@ npm i vue-mb-ui
 ``` js
 import Vue from 'vue'
 import MbUi from 'vue-mb-ui'
+import 'vue-mb-ui/lib/index.css'
 Vue.use(MbUi)
 ```
 or
 ``` js
 import Vue from 'vue'
 import { Ripple, Dialogs } from 'vue-mb-ui'
-import 'mb-ui/ripple/index.css'
-import 'mb-ui/dialogs/index.css'
+import 'vue-mb-ui/ripple/index.css'
+import 'vue-mb-ui/dialogs/index.css'
 Vue.use(Ripple)
 Vue.use(Dialogs)
 ```
