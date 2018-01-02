@@ -33,7 +33,6 @@ export const list: ComponentList = {
 }
 
 const install: PluginFunction<any> = function (vue: typeof Vue, options?: any) {
-  console.log(list)
   for (let component in list) {
     if (typeof list[component].install === 'function') {
       vue.use(list[component].install)
