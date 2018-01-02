@@ -16,9 +16,19 @@
     </mb-ripple>
     <!-- input -->
     <div class="title">input:</div>
-    <mb-input label="label" style="width: 240px;margin: 0 auto" v-model="inputValue"></mb-input>
+    <mb-input
+      type="text"
+      label="labe254566l"
+      style="width: 240px;margin: 0 auto"
+      v-model="inputValue"
+    ></mb-input>
     <div> input value: {{ inputValue }} </div>
-    <mb-button ripple-color="#fff" color="#fff" @click="changeInputValue"> change input value </mb-button>
+    <mb-button
+      ripple-color="#fff"
+      color="#fff"
+      @click="changeInputValue">
+      change input value
+    </mb-button>
     <!-- switch -->
     <div class="title">switch:</div>
     <mb-switch
@@ -60,7 +70,7 @@ import { Vue, Component } from "vue-property-decorator"
 export default class HelloWord extends Vue{
   msg: string = ''
   msgSetTime: number = 0
-  inputValue: string | number = ''
+  inputValue: string | number = '456'
   switchValue: string = '123'
   switchEnable: boolean = true
 

@@ -5,7 +5,7 @@
     </div>
     <div
       :class="['mb-input', {
-        float: type === 'float',
+        float: labelFloat,
         foucus: isFoucus,
         active: isFoucus || inputValue !== '',
         error: isShowMsg
@@ -14,6 +14,8 @@
       <input
         type="text"
         :id="'mb-input' + _uid"
+        v-model="inputValue"
+        ref="input"
         @focus="onfocus"
         @blur="onblur"
         @keyup.enter="onkeyup"
@@ -21,8 +23,6 @@
         @compositionend="compositionend"
         @change="onchange"
         @input="oninput"
-        v-model="inputValue"
-        ref="input"
       >
       <label v-show="isShowLabel" class="mb-input-label" :for="'mb-input' + _uid">
         {{ label }}
@@ -44,8 +44,8 @@ import { Vue, Component, Prop, Watch } from "vue-property-decorator"
   name: 'mb-input'
 })
 export default class Input extends Vue {
-  @Prop({ default: 'float' })
-  type: string
+  @Prop({ default: true })
+  labelFloat: boolean
 
   @Prop({ default: 'ff00ff' })
   color: string
@@ -58,11 +58,11 @@ export default class Input extends Vue {
 
   isFoucus: boolean = false
   isShowMsg: boolean = false
-  inputValue: string | number = ''
+  inputValue: string | number = this.value
   isInput: boolean = false
 
   get isShowLabel(): boolean {
-    return (this.value === '' && !this.isInput) || this.type === 'float'
+    return (this.value === '' && !this.isInput) || this.labelFloat
   }
   @Watch('value')
   onValueChanged(val: string | number): void {
@@ -96,6 +96,7 @@ export default class Input extends Vue {
   mounted() {
     for (let attr in this.$attrs) {
       (<Element>this.$refs.input).setAttribute(attr, this.$attrs[attr])
+      console.log(`${attr} : ${this.$attrs[attr]}`)
     }
   }
 }
