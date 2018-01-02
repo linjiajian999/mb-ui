@@ -1,6 +1,6 @@
 import { Vue } from "vue-property-decorator";
 export default class Input extends Vue {
-    type: string;
+    labelFloat: boolean;
     color: string;
     label: string | number;
     value: string | number;
