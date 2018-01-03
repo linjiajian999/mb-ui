@@ -8,6 +8,7 @@ yarn-error.log*
 test/
 selenium-debug.log
 package-lock.json
+.npmignore
 
 # Editor directories and files
 .idea
