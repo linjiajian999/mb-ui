@@ -9,8 +9,7 @@
         foucus: isFoucus,
         active: isFoucus || inputValue !== '',
         error: isShowMsg
-      }]"
-    >
+      }]">
       <input
         type="text"
         :id="'mb-input' + _uid"
@@ -30,9 +29,11 @@
       <div class="mb-input-msg error" v-if="isShowMsg">error</div>
     </div>
     <div class="mb-input-line-default mb-input-line"></div>
-    <div :class="['mb-input-line', {
-      foucus: isFoucus
-    }]"></div>
+    <div
+      :class="['mb-input-line', {
+        foucus: isFoucus
+      }]">
+    </div>
     <div class="mb-input-append">
       <slot name="append"></slot>
     </div>

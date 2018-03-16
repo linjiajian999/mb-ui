@@ -1,8 +1,7 @@
 <template>
   <div class="mb-button-container"
     :is="href ? 'a' : 'div'"
-    :href="href"
-  >
+    :href="href">
     <mb-ripple
       :class="[
         'mb-button',
@@ -20,8 +19,7 @@
       @mouseup="onMouseup"
       @click="onclick"
       :color="rippleColor"
-      :disable="disable"
-    >
+      :disable="disable">
       <slot></slot>
     </mb-ripple>
   </div>

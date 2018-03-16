@@ -10,8 +10,17 @@
           {{ content }}
         </div>
         <div class="mb-dialogs-bottom">
-          <mb-ripple v-if="!hideCancel" class="mb-dialogs-button" @click="onclick('cancel')">{{ cancel }}</mb-ripple>
-          <mb-ripple class="mb-dialogs-button" @click="onclick('confirm')">{{ confirm }}</mb-ripple>
+          <mb-ripple
+            v-if="!hideCancel"
+            class="mb-dialogs-button"
+            @click="onclick('cancel')">
+            {{ cancel }}
+          </mb-ripple>
+          <mb-ripple
+            class="mb-dialogs-button"
+            @click="onclick('confirm')">
+            {{ confirm }}
+          </mb-ripple>
         </div>
       </div>
     </div>
