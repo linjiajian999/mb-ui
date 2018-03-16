@@ -1,7 +1,12 @@
 <template>
   <transition name="mb-dialogs-ani">
-    <div class="mb-dialogs-container" v-if="visiable">
-      <div class="mb-dialogs-mask" @click="maskClick"></div>
+    <div
+      class="mb-dialogs-container"
+      v-if="visiable">
+      <div
+        class="mb-dialogs-mask"
+        @click="maskClick">
+      </div>
       <div class="mb-center mb-dialogs">
         <div class="mb-dialogs-title">
           {{ title }}

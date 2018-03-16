@@ -8,8 +8,7 @@
     @mouseup="onMouseup"
     :style="{
       overflow: position === 'center' ? 'unset' : 'hidden'
-    }"
-  >
+    }">
     <slot></slot>
     <span class="mb-ripple-container">
       <span
