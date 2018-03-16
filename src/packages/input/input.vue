@@ -21,12 +21,18 @@
         @compositionstart="compositionstart"
         @compositionend="compositionend"
         @change="onchange"
-        @input="oninput"
-      >
-      <label v-show="isShowLabel" class="mb-input-label" :for="'mb-input' + _uid">
+        @input="oninput">
+      <label
+        class="mb-input-label"
+        v-show="isShowLabel"
+        :for="'mb-input' + _uid">
         {{ label }}
       </label>
-      <div class="mb-input-msg error" v-if="isShowMsg">error</div>
+      <div
+        class="mb-input-msg error"
+        v-if="isShowMsg">
+        error
+      </div>
     </div>
     <div class="mb-input-line-default mb-input-line"></div>
     <div
@@ -40,7 +46,12 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from "vue-property-decorator"
+import {
+  Vue,
+  Component,
+  Prop,
+  Watch
+} from "vue-property-decorator"
 @Component({
   name: 'mb-input'
 })
@@ -135,7 +146,6 @@ $errorColor: #d50000;
     padding: 8px 0;
     margin-bottom: 16px;
     width: 100%;
-    appearance: none;
     background-color: #fff;
     background-image: none;
     border-radius: 0;

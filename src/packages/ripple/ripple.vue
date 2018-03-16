@@ -7,7 +7,9 @@
     @mouseout="onMouseup"
     @mouseup="onMouseup"
     :style="{
-      overflow: position === 'center' ? 'unset' : 'hidden'
+      overflow: position === 'center'
+        ? 'unset'
+        : 'hidden'
     }">
     <slot></slot>
     <span class="mb-ripple-container">
@@ -27,7 +29,10 @@
   </span>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator"
+import {
+  Vue,
+  Component,Prop
+} from "vue-property-decorator"
 
 enum Position {
   auto = 'auto',

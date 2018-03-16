@@ -5,8 +5,7 @@
       size === 'big' ? 'big' : '',
       val ? 'active' : 'inactive',
       disable? 'disable' : ''
-    ]"
-  >
+    ]">
     <input class="mb-hidden" type="checkbox"
       :name="inputName"
       :true-value="trueValue"
@@ -14,21 +13,20 @@
       @change="onchange"
       ref="input"
       :disabled="disable"
-      :id="`mb-switch-${_uid}`"
-    >
+      :id="`mb-switch-${_uid}`">
     <label class="mb-switch-label"
       :for="`mb-switch-${_uid}`"
-      :style="{ color: !val ? color : '#cccccc' }"
-    >{{ inactiveText }}</label>
+      :style="{ color: !val ? color : '#cccccc' }">
+      {{ inactiveText }}
+    </label>
     <div
       class="mb-switch-container"
-      @click="onclick"
-    >
+      @click="onclick">
       <span class="mb-switch-toogle"
         :style="{
           backgroundColor: toogleColor
-        }"
-      ></span>
+        }">
+      </span>
       <mb-ripple
         class="mb-switch-button shadow-1"
         position="center"
@@ -36,21 +34,26 @@
         :scale="1.7"
         :style="{
           backgroundColor: bgColor
-        }"
-      >
+        }">
       </mb-ripple>
     </div>
     <label class="mb-switch-label"
       :for="`mb-switch-${_uid}`"
-      :style="{ color: val ? color : '#cccccc' }"
-    >
+      :style="{
+        color: val ? color : '#cccccc' 
+      }">
       {{ activeText }}
     </label>
     <div class="mb-switch-mask"></div>
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from "vue-property-decorator"
+import {
+  Vue,
+  Component,
+  Prop,
+  Watch
+} from "vue-property-decorator"
 import ripple from '../ripple'
 Vue.use(ripple)
 @Component({
@@ -109,13 +112,17 @@ export default class Switch extends Vue{
   onclick(): void {
     if (!this.disable) {
       this.val = !this.val
-      const inputValue = this.val ? this.trueValue : this.falseValue
+      const inputValue = this.val
+        ? this.trueValue
+        : this.falseValue
       this.$emit('input', inputValue)
     }
   }
   onchange(value: any): void {
     this.val = !this.val
-    const inputValue = this.val ? this.trueValue : this.falseValue
+    const inputValue = this.val
+      ? this.trueValue
+      : this.falseValue
     this.$emit('input', inputValue)
   }
   mounted(): void {

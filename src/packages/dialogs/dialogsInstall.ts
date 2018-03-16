@@ -7,7 +7,7 @@ export interface DefaultOptions {
   title: string
   confirm: string
   cancel: string
-  callback: null
+  callback: Function | null
   slot: null
   hideCancel: boolean
   [key: string]: any

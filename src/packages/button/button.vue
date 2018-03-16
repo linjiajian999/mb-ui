@@ -1,5 +1,6 @@
 <template>
-  <div class="mb-button-container"
+  <div
+    class="mb-button-container"
     :is="href ? 'a' : 'div'"
     :href="href">
     <mb-ripple
@@ -25,7 +26,11 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator"
+import {
+  Vue,
+  Component,
+  Prop
+} from "vue-property-decorator"
 import ripple from '../ripple'
 Vue.use(ripple)
 
@@ -126,6 +131,5 @@ $buttonBackgroundColor: #0088dd;
   &.disable.raised,  &.disable.floating{
     background-color: #cccccc;
   }
-
 }
 </style>
