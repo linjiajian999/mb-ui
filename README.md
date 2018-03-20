@@ -1,6 +1,13 @@
 # mb-ui
 
 > a vue ui-framework with typescript
+
+## demo page
+```
+npm i
+npm run dev
+```
+
 ## Installation
 ``` npm
 npm i vue-mb-ui
