@@ -83,8 +83,7 @@ $aniDuration: .3s;
   z-index: $z5 + 1;
 }
 .mb-dialogs-mask {
-  background-color: rgba(0, 0, 0, 0.5);
-  // will-change: opacity;
+  background-color: rgba(0, 0, 0, .5);
   transition: opacity $aniDuration;
   opacity: 1;
 }
