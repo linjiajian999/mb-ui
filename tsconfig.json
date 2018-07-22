@@ -1,17 +1,37 @@
 {
   "compilerOptions": {
-    "allowJs": false,
-    "strict": true,
-    "module": "es2015",
-    "moduleResolution": "node",
-    "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "noImplicitAny": false,
     "target": "es5",
+    "module": "commonjs",
+    "strict": true,
+    "jsx": "preserve",
+    "importHelpers": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "outDir": "./dev",
+    "types": [
+      "node"    ],
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
     "lib": [
+      "es2015",
       "dom",
-      "es6",
-      "es2015.promise"
-    ],
-  }
+      "dom.iterable",
+      "scripthost"
+    ]
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "tests/**/*.ts",
+    "tests/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

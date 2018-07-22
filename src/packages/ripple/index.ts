@@ -1,15 +1,21 @@
-import Vue, { PluginFunction } from 'vue'
+import Vue from 'vue'
 
+import { MDCRipple } from 'material__ripple'
 import Ripple from './ripple.vue'
-import {
-  MbComponent
-} from '../index'
 
-const install: PluginFunction<any> = function(vue: typeof Vue, opt?: any) {
-  vue.component('mb-ripple', Ripple)
+const install = (vue: typeof Vue) => {
+  vue.component('mdc-ripple', Ripple)
+  vue.directive('ripple', {
+    bind(el: HTMLElement) {
+      if (el.className.indexOf('mb-ripple') < 0) {
+        el.className = `${el.className} mb-ripple`.trim()
+      }
+      MDCRipple.attachTo(el)
+    }
+  })
 }
-const rippleComponent: MbComponent<typeof Ripple> = {
+
+export default {
   component: Ripple,
   install
 }
-export default rippleComponent

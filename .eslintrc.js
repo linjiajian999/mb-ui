@@ -1,31 +1,82 @@
-// https://eslint.org/docs/user-guide/configuring
-
 module.exports = {
   root: true,
-  parser: 'babel-eslint',
-  // parser: 'typescript-eslint-parser',
-  parserOptions: {
-    sourceType: 'module'
-  },
   env: {
-    browser: true,
+    node: true
   },
-  // https://github.com/standard/standard/blob/master/docs/RULES-en.md
-  extends: 'standard',
-  // required to lint *.vue files
-  plugins: [
-    'html'
+  'extends': [
+    'plugin:vue/essential',
+    'eslint:recommended',
+    '@vue/typescript'
   ],
-  // add your custom rules here
-  'rules': {
-    // allow paren-less arrow functions
-    'arrow-parens': 0,
-    // allow async-await
-    'generator-star-spacing': 0,
-    // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
-    'space-before-function-paren': 'off'
-    // 'eslint-disable-next-line': 'on'
-    // 'eslint-disable': 'on'
+  rules: {
+    'no-console': 'off',
+    'no-debugger': 'off',
+    'no-eval': 'error',
+    'brace-style': [
+      'error',
+      '1tbs',
+      {
+        allowSingleLine: true
+      }
+    ],
+    camelcase: 'error',
+    'multiline-ternary': [
+      'error',
+      'always'
+    ],
+    'no-multiple-empty-lines': ['error', { 'max': 1 }],
+    'no-new-object': "error",
+    'no-new-wrappers': 'error',
+    'no-plusplus': ['error', { 'allowForLoopAfterthoughts': true }],
+    'no-script-url': 'error',
+    'no-trailing-spaces': [
+      'error',
+      {
+        ignoreComments: true
+      }
+    ],
+    'no-undefined': 'error',
+    'no-undef-init': 'error',
+    'no-var': 'error',
+    'no-whitespace-before-property': 'error',
+    'prefer-rest-params': 'error',
+    'semi-spacing': 'error',
+    'space-infix-ops': 'error',
+    semi: [
+      'error',
+      'never'
+    ],
+    'semi-style': [
+      'error',
+      'first'
+    ],
+    'arrow-spacing': [
+      'error',
+      {
+        before: true,
+        after: true
+      }
+    ],
+    'one-var': [
+      'error',
+      'never'
+    ],
+    'vue/attribute-hyphenation': [
+      'error',
+      'always'
+    ],
+    'vue/html-end-tags': 'error',
+    'vue/html-indent': [
+      'error',
+      2
+    ],
+    'vue/require-default-prop': 'error',
+    'vue/require-prop-types': 'error',
+    'vue/attributes-order': 'error',
+    'vue/html-quotes': [
+      'error',
+      'double'
+    ],
+    // 'vue/order-in-components': 'error'
   }
 }

@@ -1,42 +1,16 @@
-import './index.scss'
-import './public.scss'
-
-import Ripple from './ripple'
-import Dialogs from './dialogs'
-import Input from './input'
-import Switch from './switch'
-import Button from './button'
-
 import Vue, { PluginFunction } from 'vue'
-
-export interface MbComponent<V> {
-  component: V
-  install: PluginFunction<any>
+export interface MBBaseComponet<I> {
+  component: typeof Vue,
+  install: PluginFunction<I>
 }
 
-export interface ComponentList {
-  [key: string]: MbComponent<any>
-}
-export {
-  Ripple,
-  Dialogs,
-  Input,
-  Switch,
-  Button
-}
-export const list: ComponentList = {
-  Ripple,
-  Dialogs,
-  Input,
-  Switch,
-  Button
-}
+import Elevation from '@/packages/elevation'
+import Ripple from '@/packages/ripple'
 
-const install: PluginFunction<any> = function (vue: typeof Vue, options?: any) {
-  for (let component in list) {
-    if (typeof list[component].install === 'function') {
-      vue.use(list[component].install)
-    }
-  }
+export interface ComponentsMap {
+  [key: string]: MBBaseComponet<any>
 }
-export default install
+export const components: ComponentsMap = {
+  Elevation,
+  Ripple
+}

@@ -1,16 +1,12 @@
-import Vue, { PluginFunction } from 'vue'
+import Vue from 'vue'
 
 import Button from './button.vue'
-import {
-  MbComponent
-} from '../index'
 
-const install: PluginFunction<any> = function(vue: typeof Vue, opt?: any) {
-  vue.component('mb-button', Button)
+const install = (vue: typeof Vue) => {
+  vue.component('button', Button)
 }
 
-const buttonComponent: MbComponent<typeof Button> = {
+export default {
   component: Button,
   install
 }
-export default buttonComponent
