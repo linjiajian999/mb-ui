@@ -26,7 +26,6 @@ export default (componentName: string, parentPath: string) => {
       fileName = `${componentName}.vue`
     }
     const filePath = path.resolve(parentPath, `${componentName}/${fileName}`)
-    console.log(filePath)
     const tplBuf = fs.readFileSync(tplPath)
     let str = tplBuf.toString().replace(/__componentName__/g, componentName)
     str = str.replace(/__ComponentName__/g,  componentNameUpper)
