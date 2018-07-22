@@ -1,5 +1,8 @@
 <template>
-  <div>__componentName__</div>
+  <div>
+    <h1>__componentName__</h1>
+    <h3>the __componentName__ has no implement </h3>
+  </div>
 </template>
 
 <script lang="ts">
