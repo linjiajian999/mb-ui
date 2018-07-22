@@ -37,6 +37,6 @@ export const components = [
   // 'toolbar',
   // 'tooltip',
   'top-app-bar',
-  'typography'
+  // 'typography'
 ]
 export default components
