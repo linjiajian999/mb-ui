@@ -1,13 +1,13 @@
 <template>
   <div>
-    <h1>button</h1>
-    <h3>the button has no implement </h3>
+    <h1>radio</h1>
+    <h3>the radio has no implement </h3>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 export default Vue.extend({
-  name: 'mdc-button'
+  name: 'mdc-radio'
 })
 </script>
