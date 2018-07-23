@@ -1,6 +1,6 @@
 import Vue from 'vue'
 
-import { MDCRipple } from 'material__ripple'
+import { MDCRipple } from '@material/ripple'
 import Ripple from './ripple.vue'
 
 const install = (vue: typeof Vue) => {

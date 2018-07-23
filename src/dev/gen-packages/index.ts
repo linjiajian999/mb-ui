@@ -2,9 +2,13 @@ import * as fs from 'fs'
 import * as path from 'path'
 
 import components from './components-list'
-import genComponent from './gen-component'
+import genComponent, { genComponentLink } from './gen-component'
+import genDemo, { genDemoLink } from './gen-demo'
 
 const packagePath = './src/packages'
+const packageIndexPath = './src/packages/index.ts'
+const demoPath = './src/views/demo'
+const demoIndexPath = './src/views/demo/index.ts'
 
 const getExistComponents = () => {
   const packageList = fs.readdirSync(packagePath)
@@ -23,5 +27,8 @@ export default () => {
     if (existComponets.indexOf(componentName) >= 0) return
     console.log(`gen ${componentName}`)
     genComponent(componentName, packagePath)
+    genComponentLink(packageIndexPath)
+    genDemo(componentName, demoPath)
+    genDemoLink(demoIndexPath)
   })
 }

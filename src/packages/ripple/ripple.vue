@@ -10,6 +10,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { MDCRipple } from '@material/ripple'
+
 export interface MDCRippleData {
   ripple: MDCRipple | null
 }

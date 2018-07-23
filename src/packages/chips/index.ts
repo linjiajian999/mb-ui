@@ -3,7 +3,7 @@ import Vue from 'vue'
 import Chips from './chips.vue'
 
 const install = (vue: typeof Vue) => {
-  vue.component('chips', Chips)
+  vue.component('mdc-chips', Chips)
 }
 
 export default {

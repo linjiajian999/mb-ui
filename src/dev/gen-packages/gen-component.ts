@@ -1,17 +1,35 @@
 import * as fs from 'fs'
 import * as path from 'path'
 
+import camerlize from '../camerlize'
+import { components } from './components-list'
+
 const componentTplPath = './src/dev/gen-packages/tpl/component'
+export const genComponentLink = (indexPath: string) => {
+  const indexStr = fs.readFileSync(indexPath).toString()
 
-const camerlize = (str: string) => {
-  const reg = /-(\w)/g
-  return str.replace(reg, (_, replce: string) =>{
-    return replce
-      ? replce.toLocaleUpperCase()
-      : ''
+  let importStr = '\n'
+  let exportStr = '\n'
+
+  components.forEach(componentName => {
+    const camerlizeName = camerlize(componentName)
+    const componentNameUpper = camerlizeName[0].toLocaleUpperCase() + camerlizeName.substring(1)
+    importStr += `import ${componentNameUpper} from './${componentName}'\n`
+    exportStr += `  ${componentNameUpper},\n`
   })
-}
 
+  const importSatrt = indexStr.indexOf('// import start') + '// import start'.length
+  const importEnd = indexStr.indexOf('// import end')
+  const exportStart = indexStr.indexOf('// export start') + '// export start'.length
+  const exportEnd = indexStr.indexOf('// export end')
+
+  const writeStr = indexStr.substring(0, importSatrt)
+    + importStr
+    + indexStr.substring(importEnd, exportStart)
+    + exportStr
+    + indexStr.substring(exportEnd, indexStr.length)
+  fs.writeFileSync(indexPath, writeStr)
+}
 export default (componentName: string, parentPath: string) => {
   const componentPath = path.resolve(parentPath, componentName)
   const camerlizeName = camerlize(componentName)

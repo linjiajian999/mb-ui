@@ -3,7 +3,7 @@ import Vue from 'vue'
 import Drawer from './drawer.vue'
 
 const install = (vue: typeof Vue) => {
-  vue.component('drawer', Drawer)
+  vue.component('mdc-drawer', Drawer)
 }
 
 export default {

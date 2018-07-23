@@ -3,7 +3,7 @@ import Vue from 'vue'
 import LineRipple from './line-ripple.vue'
 
 const install = (vue: typeof Vue) => {
-  vue.component('line-ripple', LineRipple)
+  vue.component('mdc-line-ripple', LineRipple)
 }
 
 export default {

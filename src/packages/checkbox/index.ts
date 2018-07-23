@@ -3,7 +3,7 @@ import Vue from 'vue'
 import Checkbox from './checkbox.vue'
 
 const install = (vue: typeof Vue) => {
-  vue.component('checkbox', Checkbox)
+  vue.component('mdc-checkbox', Checkbox)
 }
 
 export default {

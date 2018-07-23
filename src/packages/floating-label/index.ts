@@ -3,7 +3,7 @@ import Vue from 'vue'
 import FloatingLabel from './floating-label.vue'
 
 const install = (vue: typeof Vue) => {
-  vue.component('floating-label', FloatingLabel)
+  vue.component('mdc-floating-label', FloatingLabel)
 }
 
 export default {

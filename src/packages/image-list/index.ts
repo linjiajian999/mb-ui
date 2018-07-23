@@ -3,7 +3,7 @@ import Vue from 'vue'
 import ImageList from './image-list.vue'
 
 const install = (vue: typeof Vue) => {
-  vue.component('image-list', ImageList)
+  vue.component('mdc-image-list', ImageList)
 }
 
 export default {

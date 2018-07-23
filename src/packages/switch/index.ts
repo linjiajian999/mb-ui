@@ -3,7 +3,7 @@ import Vue from 'vue'
 import Switch from './switch.vue'
 
 const install = (vue: typeof Vue) => {
-  vue.component('switch', Switch)
+  vue.component('mdc-switch', Switch)
 }
 
 export default {

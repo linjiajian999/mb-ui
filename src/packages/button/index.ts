@@ -3,7 +3,7 @@ import Vue from 'vue'
 import Button from './button.vue'
 
 const install = (vue: typeof Vue) => {
-  vue.component('button', Button)
+  vue.component('mdc-button', Button)
 }
 
 export default {

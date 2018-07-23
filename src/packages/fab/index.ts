@@ -3,7 +3,7 @@ import Vue from 'vue'
 import Fab from './fab.vue'
 
 const install = (vue: typeof Vue) => {
-  vue.component('fab', Fab)
+  vue.component('mdc-fab', Fab)
 }
 
 export default {
